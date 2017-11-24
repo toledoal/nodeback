@@ -1,0 +1,19 @@
+{
+  "name": "nodeback",
+  "version": "1.0.0",
+  "description": "Practica de Clase",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toledoal/nodeback.git"
+  },
+  "author": "Alejandro Toledo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toledoal/nodeback/issues"
+  },
+  "homepage": "https://github.com/toledoal/nodeback#readme"
+}
