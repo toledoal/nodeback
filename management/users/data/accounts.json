@@ -1,10 +1,8 @@
-{
-    "accounts": {
+ {
         "id": "00001",
         "username": "peps",
         "firstname":"Jose",
         "lastname": "Perez",
         "password": "fakepass"
 
-    }
-}
+ }

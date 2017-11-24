@@ -1,9 +1,7 @@
 {
-    "activity_log":{
         "lastOpened": "1203123123",
         "openedBy": {
             "id":"00001", "username":"Peps"
         },
         "device":{ "id":"00001", "status":"locked"}
-    }
-}
+ }

@@ -1,5 +1,4 @@
 {
-"devices":{
     "id":"000001",
     "name":"Default Smartlock",
     "owner": { "id": "000001", "username":"Peps"},
@@ -8,6 +7,6 @@
     },
     "status": "unlocked"
 }
-}
+
 
 
