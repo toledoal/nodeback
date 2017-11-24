@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/toledoal/nodeback/issues"
   },
-  "homepage": "https://github.com/toledoal/nodeback#readme"
+  "homepage": "https://github.com/toledoal/nodeback#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "node-persist": "^2.1.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
 }
