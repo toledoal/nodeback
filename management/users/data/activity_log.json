@@ -4,5 +4,6 @@
         "openedBy": {
             "id":"00001", "username":"Peps"
         },
+        "username":"Peps",
         "device":{ "id":"00001", "status":"locked"}
  }

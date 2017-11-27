@@ -53,7 +53,7 @@ router.get('/', function (req, res) {
                 return res.status(400).send({
                   statusCode: 400,
                   error: 'Bad request',
-                  message: 'The device name ' + name + ' already exists'
+                  message: 'The device name ' + deviceName + ' already exists'
                 })
               }else{
                 var newDevice = {

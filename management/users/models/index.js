@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid/v4');
 const db = require("../../../db");
 const usersPath = "./management/users/data/accounts.json";
+const activityLog = "./management/users/data/activity_log.json";
+const creationLog = "./management/users/data/creation_log.json";
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +26,22 @@ router.get('/', function (req, res) {
           });
     });; 
   });
+
+
+
+router.get('/activity/:username', function (req, res) {
+    var userName = req.params.username;
+    db.read(activityLog, "username",userName ).then(function(resolve, reject){
+        return res.json(resolve);
+    }).catch(function(error) {
+        console.error(error);
+        return res.status(400).send({
+            statusCode: 400,
+            error: 'Bad request',
+            message: 'Wrong File!'
+          });
+    });; 
+});
 
 
 router.post('/new/:username', function (req, res) {
@@ -77,6 +95,14 @@ router.post('/new/:username', function (req, res) {
                       error: 'Bad request',
                       message: 'Something went wrong creating new user!'
                     }); }); 
+
+                    var activity = {
+                        type: "user created",
+                        createdAt: new Date(),
+                        username: userName
+                    }
+                    db.save(creationLog, JSON.stringify(activity)).then(function(resolve, reject){
+                    }).catch(function(error) {console.error(error);}); 
 
           }
     }).catch((error) => {console.error(error);});

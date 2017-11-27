@@ -2,7 +2,7 @@
 
 var fs = require("fs");
 
-function read(path) {
+function read(path, filter, value) {
     return new Promise(function (resolve, reject) {
         fs.readFile(path,{encoding:"utf-8"}, (err, data) => {
             if (err){
@@ -11,7 +11,15 @@ function read(path) {
                 var objects = data.split('|');
                 var json = [];
                 objects.forEach(function(item){
-                     json.push(JSON.parse(item));
+                     var parsedJson = JSON.parse(item);
+                     if (filter && value == undefined){
+                     json.push(parsedJson);
+                     }else{
+                         if (parsedJson[filter] === value )
+                         {
+                            json.push(parsedJson); 
+                         }
+                     }
                 });
                 var dat = { "root": json};
                 resolve(dat);

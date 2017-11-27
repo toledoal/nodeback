@@ -6,4 +6,4 @@
         "password": "fakepass",
         "sex":null
 
- }
+ }|{"_id":"511f403b-6edb-4bab-8465-9fa6f97adf7d","username":"atole","first_name":"alejandro","last_name":"toledo","password":"1234","sex":"male"}|{"_id":"d9203385-e363-4f14-892b-80cc60904a87","username":"sarah","first_name":"sarah","last_name":"lopez","password":"1234","sex":"female"}
