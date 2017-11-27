@@ -60,6 +60,7 @@ router.post('/new/:username', function (req, res) {
                 username: userName,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
+                password: "1234",
                 sex: (!req.body.sex) ? null : req.body.sex
               }
 
@@ -74,7 +75,7 @@ router.post('/new/:username', function (req, res) {
                   return res.status(400).send({
                       statusCode: 400,
                       error: 'Bad request',
-                      message: 'Something went wrong!'
+                      message: 'Something went wrong creating new user!'
                     }); }); 
 
           }

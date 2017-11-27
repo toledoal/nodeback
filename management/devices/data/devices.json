@@ -1,12 +1,12 @@
 {
     "_id":"000001",
     "name":"Default Smartlock",
-    "owner": { "id": "000001", "username":"Peps"},
-    "sharedWith": {
-        "user1" : { "id": "00001", "username": "Peps"}
-    },
-    "status": "unlocked"
+    "owner": "Peps",
+    "accessTo": [
+       { "user" : "Peps"}
+    ],
+    "locked": false,
+    "createdAt":"2017-11-27T14:23:16.185Z",
+    "modifiedAt":"2017-11-27T14:23:16.185Z"
 }
-
-
 
