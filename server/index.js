@@ -8,6 +8,10 @@ var app = express();
 var users = require("../management/users/models")
 var devices = require('../management/devices/models');
 
+app.get('/', function(req, res){
+return res.json(200, {msg: 'USER DID IT'});
+})
+
 app.use('/users', users);
 app.use('/devices', devices);
 

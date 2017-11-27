@@ -8,7 +8,13 @@ function read(path) {
             if (err){
                 reject(err);
             }else{
-                resolve({ root: JSON.parse(data) });
+                var objects = data.split('|');
+                var json = [];
+                objects.forEach(function(item){
+                     json.push(JSON.parse(item));
+                });
+                var dat = { "root": json};
+                resolve(dat);
             }            
         });
     });
@@ -16,9 +22,9 @@ function read(path) {
 
 function save(path, json) {
     return new Promise(function (resolve, reject) {
-    fs.appendFile(path, json, (err) => {
+    fs.appendFile(path, `|${json}`, (err) => {
         if (err){
-            reject(err);
+            reject.catch(err => console.log(err));
         }else{
             resolve({"response":"success"})
             console.log('The "data to append" was appended to file!');
@@ -27,8 +33,31 @@ function save(path, json) {
     });
 }
 
+function idExist(key, value, path){
+    let idExists = false;
+    return new Promise(function (resolve, reject) {
+        fs.readFile(path,{encoding:"utf-8"}, (err, data) => {
+            if (err){
+                reject(err);
+            }else{
+                var objects = data.split('|');
+                var json = [];
+                objects.forEach(function(item){
+                    console.log(JSON.parse(item)[key]);
+                     if (JSON.parse(item)[key] === value){
+                        idExists = true;;
+                     }else{
+                        idExists = false;
+                     }
+                });
+                resolve(idExists);
+            }            
+        });
+    });
+}
 
-module.exports = { "read": read, "save": save }
+
+module.exports = { "read": read, "save": save, "idExist": idExist }
 
 
 /*HOW TO USE THIS 

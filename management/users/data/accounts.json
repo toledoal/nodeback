@@ -1,8 +1,8 @@
  {
-        "id": "00001",
+        "_id": "00001",
         "username": "peps",
         "firstname":"Jose",
         "lastname": "Perez",
         "password": "fakepass"
 
- }
+ }|{"_id":"5b911829-8846-4f65-88b9-c4e594362790","username":"gie","first_name":"gie","last_name":"bele","sex":null}|{"_id":"5ad46dbe-b48d-48da-9c9a-f75b3129a22c","username":"atole","first_name":"gie","last_name":"bele","sex":null}
