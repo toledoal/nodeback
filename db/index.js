@@ -26,7 +26,7 @@ function read(path, filter, value) {
             }            
         });
     });
-}
+};
 
 function save(path, json) {
     return new Promise(function (resolve, reject) {
@@ -39,7 +39,44 @@ function save(path, json) {
         }
     });
     });
-}
+};
+
+function update(path, type, id, key, value){
+    return new Promise(function (resolve, reject) {
+
+        fs.readFile(path,{encoding:"utf-8"}, (err, data) => {
+            if (err){
+                reject(err);
+            }else{
+                var objects = data.split('|');
+                var json = "";
+                objects.forEach(function(item){
+                     var parsedJson = JSON.parse(item);
+                     if (parsedJson[type] === id )
+                     {
+                         parsedJson[key]=value;
+                     }
+                     json += '|' + JSON.stringify(parsedJson);   
+
+                });
+
+                fs.writeFile(path, json.substring(1), (err) => {
+                    if (err){
+                        reject.catch(err => console.log(err));
+                    }else{
+                        resolve({"response":"success"})
+                        console.log('The "data to update" was updated to file!');
+                    }
+                });
+              
+
+            }            
+        });
+
+    });  
+};
+
+
 
 function idExist(key, value, path){
     let idExists = false;
@@ -62,10 +99,10 @@ function idExist(key, value, path){
             }            
         });
     });
-}
+};
 
 
-module.exports = { "read": read, "save": save, "idExist": idExist }
+module.exports = { "read": read, "save": save, "idExist": idExist, "update":update }
 
 
 /*HOW TO USE THIS 

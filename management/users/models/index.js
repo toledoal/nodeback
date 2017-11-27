@@ -83,11 +83,14 @@ router.post('/new/:username', function (req, res) {
               }
 
               db.save(usersPath, JSON.stringify(newUser)).then(function(resolve, reject){
-                  return res.json({
+                var activity = {type: "user created",createdAt: new Date(),username: userName};
+                db.save(creationLog, JSON.stringify(activity)).then(function(resolve, reject){
+                }).catch(function(error) {console.error(error);});   
+                return res.json({
                       success: true,
                       messages: 'User created successfully',
                       user: newUser
-                    })
+                    });
               }).catch(function(error) {
                   console.error(error);
                   return res.status(400).send({
@@ -96,13 +99,8 @@ router.post('/new/:username', function (req, res) {
                       message: 'Something went wrong creating new user!'
                     }); }); 
 
-                    var activity = {
-                        type: "user created",
-                        createdAt: new Date(),
-                        username: userName
-                    }
-                    db.save(creationLog, JSON.stringify(activity)).then(function(resolve, reject){
-                    }).catch(function(error) {console.error(error);}); 
+                
+                   
 
           }
     }).catch((error) => {console.error(error);});

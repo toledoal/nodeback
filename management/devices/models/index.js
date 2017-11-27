@@ -7,6 +7,8 @@ const uuid = require('uuid/v4');
 const db = require("../../../db");
 const devicesPath = "./management/devices/data/devices.json";
 const usersPath = "./management/users/data/accounts.json";
+const activityLog = "./management/users/data/activity_log.json";
+const creationLog = "./management/users/data/creation_log.json";
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -26,27 +28,21 @@ router.get('/', function (req, res) {
   });
 
 
-  router.post('/new/:name', function (req, res) {
+
+
+router.post('/new/:name', function (req, res) {
     if (!req.body.username) {
       return res.status(400).send({
         statusCode: 400,
         error: 'Bad request',
         message: 'Not first name provided'
-      })
+      });
     }
   
     var userName = req.body.username;
     var deviceName = req.params.name;
 
-    db.idExist("username",userName, usersPath).then(function(resolve, reject){
-        console.log("It is there!" + resolve);
-        if (resolve) {
-            return res.status(400).send({
-              statusCode: 400,
-              error: 'Bad request',
-              message: 'The username ' + userName + ' already exists'
-            })
-          }else{
+
         db.idExist("name", deviceName, devicesPath).then(function(resolve, reject){
             console.log("It is there!" + resolve);
             if (resolve) {
@@ -71,6 +67,9 @@ router.get('/', function (req, res) {
                   }
 
                   db.save(devicesPath, JSON.stringify(newDevice)).then(function(resolve, reject){
+                    var activity = {type: "device created",createdAt: new Date(),devicename: deviceName,username: userName }
+                    db.save(creationLog, JSON.stringify(activity)).then(function(resolve, reject){
+                    }).catch(function(error) {console.error(error);}); 
                     return res.json({
                         success: true,
                         messages: 'Device created successfully',
@@ -86,14 +85,40 @@ router.get('/', function (req, res) {
   
               }
 
-        }).catch((error) => {console.error(error);});;
+        }).catch((error) => {console.error(error);});
 
-          }
-    }).catch((error) => {console.error(error);});
-   
+  });
 
-  
+  router.post('/:devicename/:status', function (req, res) {
+    
+   if (!req.body.username) {
+        return res.status(400).send({
+          statusCode: 400,
+          error: 'Bad request',
+          message: 'Not username provided'
+        })
+};
 
+    var userName = req.body.username;
+    var deviceName = req.params.devicename;
+    var status = req.params.status == 'true' ? true : false;
+
+    db.update(devicesPath, "name", deviceName, "locked", status ).then(function(resolve, reject){
+        var activity = {type: "device update",createdAt: new Date(),devicename: deviceName,username: userName, locked: status }
+        db.save(activityLog, JSON.stringify(activity)).then(function(resolve, reject){
+        }).catch(function(error) {console.error(error);}); 
+        return res.json({
+            success: true,
+            messages: 'Device updated successfully',
+            user: userName
+          })
+    }).catch(function(error) {
+        console.error(error);
+        return res.status(400).send({
+            statusCode: 400,
+            error: 'Bad request',
+            message: 'Something went wrong updating device!'
+          }); }); 
 
 
   });

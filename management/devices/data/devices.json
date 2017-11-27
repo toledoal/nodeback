@@ -1,13 +1,1 @@
-{
-    "_id":"000001",
-    "name":"Default Smartlock",
-    "owner": "Peps",
-    "accessTo": [
-       { "user" : "Peps"}
-    ],
-    "locked": false,
-    "createdAt":"2017-11-27T14:23:16.185Z",
-    "modifiedAt":"2017-11-27T14:23:16.185Z"
-}
-
-|{"_id":"f5ab06e8-74c0-4a19-84ec-f08753a5fbda","name":"homedoor","owner":"gie","accessTo":[{"user":"gie"}],"locked":false,"createdAt":"2017-11-27T14:54:36.527Z","modifiedAt":"2017-11-27T14:54:36.527Z"}
+{"_id":"bd09e657-b316-43c0-9870-e30a326ed343","name":"homedoor","owner":"sarah","accessTo":[{"user":"sarah"}],"locked":false,"createdAt":"2017-11-27T16:42:46.746Z","modifiedAt":"2017-11-27T16:42:46.746Z"}|{"_id":"2ef0b500-46f4-4bc6-936a-ff1a5d327f34","name":"homeback","owner":"sarah","accessTo":[{"user":"sarah"}],"locked":false,"createdAt":"2017-11-27T16:47:11.112Z","modifiedAt":"2017-11-27T16:47:11.112Z"}|{"_id":"6c4afe0e-8cbd-49b8-aa17-23e9aa02d725","name":"homesbacks","owner":"sarah","accessTo":[{"user":"sarah"}],"locked":false,"createdAt":"2017-11-27T16:53:48.395Z","modifiedAt":"2017-11-27T16:53:48.395Z"}
